@@ -1,0 +1,6 @@
+@import "./common";
+
+body {
+    background-color: map-get($colors, 'bg-color');
+    height: 100%;
+}

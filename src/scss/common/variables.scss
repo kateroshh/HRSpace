@@ -1,0 +1,33 @@
+$content-with: (
+    xxxl: 1382px,
+    xxl: 1250px,
+    xl: 885px,
+    md: 820px, 
+    sm: 380px,
+);
+
+$breakpoint: (
+    1500px: 1500px,
+    1280px: 1280px,
+    1024px: 1024px,
+    930px: 930px, 
+    600px: 600px,
+);
+
+$colors: (
+    main: #fff,
+);
+
+$font-sizes: (
+    main: 16px,
+);
+
+$font-weights: (
+    regular: 400,
+    medium: 600,
+    bold: 700,
+);
+
+$line-height: (
+    main: 133%,
+)
