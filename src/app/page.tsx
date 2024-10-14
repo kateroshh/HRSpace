@@ -1,95 +1,195 @@
+"use client";
+import { FC } from "react";
+import "@/scss/index.scss";
+
 import Image from "next/image";
-import styles from "./page.module.css";
+import LogoImg from "@/img/logo.svg";
+import ProfileImg from "@/img/profile.png";
 
-export default function Home() {
+import SVG from "react-inlinesvg";
+
+const Home: FC = () => {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="page">
+      <main className="main">
+        <header className="header">
+          <div className="header__left">
+            <a className="logo" href="/">
+              <Image
+                className="logo__img"
+                src={LogoImg}
+                alt="logo"
+                priority={true}
+              />
+            </a>
+            <nav className="menu">
+              <li className="menu__item">
+                <a className="menu__link" href="#">
+                  Заявки
+                </a>
+              </li>
+              <li className="menu__item">
+                <a className="menu__link" href="#">
+                  Исполнители
+                </a>
+              </li>
+              <li className="menu__item">
+                <a className="menu__link" href="#">
+                  Вопросы и ответы
+                </a>
+              </li>
+            </nav>
+          </div>
+          <ul className="user-info">
+            <li className="user-info__item">
+              <a className="user-info__link" href="#">
+                <SVG className="user-info__bell" src="/img/bell.svg" />
+              </a>
+            </li>
+            <li className="user-info__item">
+              <a className="user-info__link user-info__link_new" href="#">
+                <SVG className="user-info__chat" src="/img/chat.svg" />
+              </a>
+            </li>
+            <li className="user-info__item">
+              <a className="user-info__link user-info__portfolio" href="#">
+                <Image
+                  className="user-info__img"
+                  src={ProfileImg}
+                  alt="user image"
+                />
+                <div className="user-info__about">
+                  <p className="user-info__name">Виталий Крымов</p>
+                  <p className="user-info__id">Клиент 45732</p>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </header>
+
+        <div className="form-box">
+          <div className="progress">
+            <h2 className="progress__title title">Создание заявки</h2>
+            <ul className="steps">
+              <li className="steps__item steps__item_active">
+                <a className="steps__link" href="#">
+                  Выбор специалиста
+                </a>
+              </li>
+              <li className="steps__item">
+                <a className="steps__link" href="#">
+                  Условия работы
+                </a>
+              </li>
+              <li className="steps__item">
+                <a className="steps__link" href="#">
+                  Обязанности и требования к специалисту
+                </a>
+              </li>
+              <li className="steps__item">
+                <a className="steps__link" href="#">
+                  Условия сотрудничества
+                </a>
+              </li>
+              <li className="steps__item">
+                <a className="steps__link" href="#">
+                  Требования к рекрутеру
+                </a>
+              </li>
+              <li className="steps__item">
+                <a className="steps__link" href="#">
+                  Оплата и публикация
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="form-wrapper">
+            <h1 className="form-wrapper__title title">
+              Какого специалиста ищете?
+            </h1>
+            <form className="form">
+              <div className="form__element">
+                <label className="form__lable" htmlFor="vacancies">
+                  Название вакансии
+                </label>
+                <input
+                  className="form__input"
+                  type="text"
+                  name="vacancies"
+                  id="vacancies"
+                  required
+                  placeholder="Например, контент–менеджер"
+                />
+              </div>
+
+              <div className="form__element">
+                <label className="form__lable" htmlFor="vacancies">
+                  Должность
+                </label>
+                <input
+                  className="form__input"
+                  type="text"
+                  name="vacancies"
+                  id="vacancies"
+                  required
+                  placeholder="Начните вводить и выберите должность из списка"
+                />
+              </div>
+
+              <div className="form__element">
+                <label className="form__lable" htmlFor="vacancies">
+                  Сфера деятельности
+                </label>
+                <input
+                  className="form__input"
+                  type="text"
+                  name="vacancies"
+                  id="vacancies"
+                  required
+                  placeholder="Например, маркетинг"
+                />
+              </div>
+              <div className="form__btn-group">
+                <button className="form__button button">
+                  Сохранить и продолжить
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+      </main>
+      <footer className="footer">
+        <div className="footer__text">
+          <div className="footer__question">
+            <p className="footer__info">
+              Если остались вопросы, у нас уже готовы ответы в разделе
+            </p>
+            <a className="footer__link" href="#">
+              «Вопрос — ответ»
+            </a>
+          </div>
+          <p className="footer__copyright">
+            © 2024 Группа компаний HeadHunter
           </p>
-        </a>
-      </div>
-    </main>
+        </div>
+        <div className="footer__contacts">
+          <h3 className="footer__title">Всегда поддержим и поможем:</h3>
+          <ul className="contacts">
+            <li className="contact">
+              по России <span className="contact__num">8 800 100-64-27</span>
+            </li>
+            <li className="contact">
+              в Москве <span className="contact__num">+7 495 974-64-27</span>
+            </li>
+            <li className="contact">
+              в Санкт-Петербурге{" "}
+              <span className="contact__num">+7 812 458-45-45</span>
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </div>
   );
-}
+};
+
+export default Home;

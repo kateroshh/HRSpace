@@ -1,25 +1,60 @@
 $content-with: (
-    xxxl: 1382px,
-    xxl: 1250px,
-    xl: 885px,
-    md: 820px, 
-    sm: 380px,
+  1500px: 1382px,
+  1280px: 1250px,
+  1024px: 885px,
+  930px: 820px, 
+  600px: 380px,
 );
 
 $breakpoint: (
-    1500px: 1500px,
-    1280px: 1280px,
-    1024px: 1024px,
-    930px: 930px, 
-    600px: 600px,
+  s1500px: 1500px,
+  s1280px: 1280px,
+  s1024px: 1024px,
+  s930px: 930px, 
+  s660px: 660px,
+  s600px: 600px,
 );
 
-$colors: (
-    main: #fff,
+
+$themes: (
+  light: (
+    text: #303233,
+    text-light: #fff,
+    bg: #fff,
+    bg-form: #f5f7fa,
+    grey: #959799,
+    grey-light: #d4d7d9,
+    id: #6e7070,
+    accent: #71a2ff,
+    accent-hover: #4b86f6,
+    step: #becee3,
+    new: #d92121,
+  ),
+  dark: (
+    text: #fff,
+    text-light: #fff,
+    bg: #333,
+    bg-form: #f5f7fa,
+    grey: #959799,
+    grey-light: #d4d7d9,
+    id: #6e7070,
+    accent: #71a2ff,
+    accent-hover: #4b86f6,
+    step: #becee3,
+    new: #d92121,
+  ),
 );
+
+// $colors: (
+//   bg-light: #fff,
+//   bg-dark: #333,
+// );
 
 $font-sizes: (
     main: 16px,
+    d-small: 14px,
+    d-tiny: 12px,
+    d-title: 24px,
 );
 
 $font-weights: (
@@ -29,5 +64,5 @@ $font-weights: (
 );
 
 $line-height: (
-    main: 133%,
+    main: 150%,
 )

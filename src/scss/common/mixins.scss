@@ -1,0 +1,82 @@
+@mixin themify($themes) {
+  @each $name, $values in $themes {
+    .#{$name}-theme {
+      $theme-map: $values !global;
+      @content;
+    }
+  }
+}
+  
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
+
+@mixin hover-link($type) {
+  #{$type}: themed('text');
+
+  &:hover {
+    #{$type}: themed('accent');
+  }
+}
+
+@mixin inputs-color {
+  border: 1px solid themed('grey-light');
+
+    &::placeholder {
+      color: themed('grey');
+    }
+
+    &:focus, &:focus-visible {
+      border: 1px solid themed('accent');
+      outline: none;
+    }
+
+    &:disabled {
+      border: 1px solid themed('grey');
+      color: themed('grey');
+      background-color: themed('bg');
+    }
+
+    &_error {
+      border: 1px solid themed('new');
+    }
+}
+
+
+// Media breackpoints
+
+@mixin size-1500() {
+  @media (min-width: map-get($breakpoint, 's1500px')) {
+      @content;
+  }
+}
+
+@mixin size-1280() {
+  @media (max-width: map-get($breakpoint, 's1280px')) {
+      @content;
+  }
+}
+
+@mixin size-1024() {
+  @media (max-width: map-get($breakpoint, 's1024px')) {
+      @content;
+  }
+}
+
+@mixin size-930() {
+  @media (max-width: map-get($breakpoint, 's930px')) {
+      @content;
+  }
+}
+
+@mixin size-660() {
+  @media (max-width: map-get($breakpoint, 's660px')) {
+      @content;
+  }
+}
+
+@mixin size-600() {
+  @media (max-width: map-get($breakpoint, 's600px')) {
+      @content;
+  }
+}
