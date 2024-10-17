@@ -1,0 +1,182 @@
+@import "@/scss/common/";
+
+@include themify($themes) {
+  .steps {
+    &__item {
+      &_active {
+        &::before {
+          background-color: themed('accent') !important;
+        }
+
+        &:not(:last-child)::after {
+          background-color: themed('accent') !important;
+        }
+      }
+
+      &_last-step {
+        &:not(:last-child)::after {
+          background: linear-gradient(180deg, #becee3 0%, #71a2ff 100%) !important;
+        }
+      }
+
+      &::before {
+        background-color: themed('step');
+      }
+  
+      &:not(:last-child)::after {
+        background-color: themed('step');
+      }
+    }
+
+    &__link {
+      @include hover-link('color');
+      color: themed('text');
+    }
+  }
+
+  .progress {
+    background-color: themed('bg-form');
+  }
+}
+
+.progress {
+  @extend %display-flex;
+  align-items: flex-start;
+  flex-direction: column;
+  border-radius: 28px;
+  padding: 56px 0px 30px 59px;
+  width: 32%;
+
+  &__title {
+    margin-bottom: 42px;
+  }
+}
+
+.steps {
+  &__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    column-gap: 28px;
+
+    &::before {
+      content: '';
+      border-radius: 50%;
+      width: 46px;
+      height: 46px;
+      display: block;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 46px;
+      width: 4px;
+      height: 60px;
+    }
+
+    @for $i from 1 through 6 {
+      &:nth-of-type(#{$i})::before {
+        background-image: url(../../../../public/img/step-icons/step-#{$i}.svg);
+      }
+    }
+  }
+
+  &__link {
+    max-width: 60%;
+  }
+}
+
+// Media breackpoints
+
+@include size-1024 {
+  .progress {
+    padding: 56px 0px 30px 30px;
+  }
+  
+  .steps {
+    &__item {
+      column-gap: 16px;
+      font-size: 14px;
+    }
+
+    &__link {
+      max-width: 63%;
+    }
+  }
+}
+
+@include size-930 {
+  .progress {
+    width: 100%;
+    padding: 30px;
+
+    &__title {
+      display: none;
+    }
+  }
+
+  .steps {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__link {
+      display: none;
+    }
+
+    &__item {
+      margin-bottom: 0;
+
+      &::before {
+        width: 56px;
+        height: 56px;
+      }
+
+      &:not(:last-child)::after {
+        left: 104px;
+        top: -25px;
+        height: 105px;
+        transform: rotate(90deg);
+      }
+    }
+  }
+}
+
+@include size-660 {
+  .progress {
+    padding: 18px;
+  }
+
+  .steps {
+    &__item {
+      &:not(:last-child)::after {
+        left: 98px;
+        top: -16px;
+        height: 90px;
+      }
+    }
+  }
+}
+
+@include size-600 {
+  .steps {
+    &__item {
+      &::before {
+        width: 42px;
+        height: 42px;
+      }
+
+      &:not(:last-child)::after {
+        left: 66px;
+        top: -3px;
+        height: 52px;
+      }
+    }
+  }
+}
