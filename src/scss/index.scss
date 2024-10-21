@@ -5,30 +5,6 @@
     background-color: themed('bg');
     color: themed('text');
   }
-
-  .form {
-    &__input {
-      @include inputs-color;
-    }
-  }
-
-  .button {
-    background-color: themed('accent');
-    color: themed('text-light');
-
-    &:hover {
-      background-color: themed('accent-hover');
-    }
-
-    &:disabled {
-      background-color: themed('step');
-      color: themed('bg-form');
-    }
-
-    &_empty {
-      background-color: transparent;
-    }
-  }
 }
 
 body {
@@ -59,57 +35,9 @@ body {
   min-height: 100vh;
 }
 
-.form-box {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  column-gap: 80px;
-  margin: 60px 0 0 0;
-}
-
 .title {
   font-weight: map-get($font-weights, 'bold');
   font-size: map-get($font-sizes, 'd-title');
-}
-
-.form-wrapper {
-  width: 62%;
-
-  &__title {
-    margin: 57px 0 50px 0;
-  }
-}
-
-.form {
-  width: 100%;
-
-  &__element {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 32px;
-  }
-
-  &__lable {
-    font-weight: map-get($font-weights, 'bold');
-    margin-bottom: 10px;
-  }
-
-  &__input {
-    width: 90%;
-    border-radius: 8px;
-    padding: 11px 16px;
-  }
-
-  &__btn-group {
-    width: 90%;
-    display: flex;
-    justify-content: flex-end;
-    margin: 67px 0 0 0;
-  }
-
-  &__button {
-    margin-right: 6px;
-  }
 }
 
 .button {
@@ -125,64 +53,10 @@ body {
   .main {
     margin-bottom: 0;
   }
-
-  .form-box {
-    column-gap: 40px;
-  }
 }
 
 @include size-930 {
   .main {
     margin-bottom: 60px;
   }
-
-  .form-box {
-    margin: 30px 0 0 0;
-    flex-direction: column;
-  }
-
-  .form-wrapper {
-    width: 100%;
-    padding: 20px;
-
-    &__title {
-      margin: 38px 0;
-    }
-  }
-
-  .form {
-    &__input {
-      width: 100%;
-    }
-
-    &__btn-group {
-      width: 100%;
-      justify-content: center;
-    }
-
-    &__button {
-      width: 100%;
-      margin-right: 0;
-    }
-  }
-
-}
-
-@include size-660 {
-
-}
-
-@include size-600 {
-  .form-wrapper {
-    &__title {
-      margin: 16px 0 30px 0;
-    }
-
-    .form {
-      &__input::placeholder {
-        font-size: map-get($font-sizes, 'd-tiny');
-      }
-    }
-  }
-
 }

@@ -1,9 +1,9 @@
 "use client";
-import { FC } from "react";
 
 import { Field } from "formik";
+import { FormikStepProps } from "@/components/FormikStepper/FormikStepper";
 
-const WorkConditions: FC = () => {
+const WorkConditions = ({ validationSchema }: FormikStepProps) => {
   return (
     <>
       <div className="form__element">

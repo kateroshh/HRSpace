@@ -1,9 +1,10 @@
 "use client";
-import { FC } from "react";
 
 import { Field } from "formik";
 
-const DescriptionSpecialist: FC = () => {
+import { FormikStepProps } from "@/components/FormikStepper/FormikStepper";
+
+const DescriptionSpecialist = ({ validationSchema }: FormikStepProps) => {
   return (
     <>
       <div className="form__element">
@@ -16,18 +17,6 @@ const DescriptionSpecialist: FC = () => {
           name="vacancies"
           placeholder="Например, контент–менеджер"
         />
-
-        {/* <label className="form__lable" htmlFor="vacancies">
-          Название вакансии
-        </label>
-        <input
-          className="form__input"
-          type="text"
-          name="vacancies"
-          id="vacancies"
-          required
-          placeholder="Например, контент–менеджер"
-        /> */}
       </div>
 
       {/* <div className="form__element">

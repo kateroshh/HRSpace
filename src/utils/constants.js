@@ -1,3 +1,5 @@
+import * as Yup from "yup";
+
 export const MENU = [
   {
     title: "Заявки",
@@ -39,3 +41,22 @@ export const STEPS = [
     titleForm: "Публикация и оплата",
   },
 ];
+
+export const CONFIG_FORMS = {
+  initialValues: {
+    vacancies: "",
+    other: "",
+  },
+  descriptionSpecialist: {
+    label: "Какого специалиста ищете?",
+    validationSchema: Yup.object({
+      vacancies: Yup.string().required(),
+    }),
+  },
+  workConditions: {
+    label: "Что вы можете предложить специалисту?",
+    validationSchema: Yup.object({
+      other: Yup.string().required(),
+    }),
+  },
+};

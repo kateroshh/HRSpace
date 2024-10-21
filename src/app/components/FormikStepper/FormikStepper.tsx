@@ -5,11 +5,16 @@ import "./FormikStepper.scss";
 import { Form, Formik, FormikConfig, FormikValues } from "formik";
 
 import FormProgress from "@/components/FormProgress/FormProgress";
+import { useLocalStorageState as useStorage } from "@/utils/hooks/useLocalStorageState";
 
 export interface FormikStepProps
-  extends Pick<FormikConfig<FormikValues>, "children" | "validationSchema"> {}
+  extends Pick<FormikConfig<FormikValues>, "children" | "validationSchema"> {
+  label: string;
+}
 
 const FormikStepper = ({ children, ...props }: FormikConfig<FormikValues>) => {
+  const [steps, setSteps] = useStorage("steps", {});
+
   const childrenArray = children as React.ReactElement<FormikStepProps>[];
 
   const [step, setStep] = useState(0);
@@ -22,11 +27,12 @@ const FormikStepper = ({ children, ...props }: FormikConfig<FormikValues>) => {
   return (
     <Formik
       {...props}
-      // validationSchema={currentChild.props.validationSchema}
+      validationSchema={currentChild.props.validationSchema}
       onSubmit={(values, helpers) => {
         if (isLastStep()) {
           props.onSubmit(values, helpers);
         } else {
+          setSteps(values);
           setStep((s) => s + 1);
         }
       }}
@@ -36,19 +42,21 @@ const FormikStepper = ({ children, ...props }: FormikConfig<FormikValues>) => {
 
         <div className="form-wrapper">
           <h1 className="form-wrapper__title title">
-            Какого специалиста ищете?
+            {currentChild.props.label}
           </h1>
           <Form className="form" autoComplete="off">
             {currentChild}
 
             <div className="form__btn-group">
-              <button
-                className="form__button button"
-                onClick={() => setStep((s) => s - 1)}
-                type="button"
-              >
-                Назад
-              </button>
+              {isLastStep() && (
+                <button
+                  className="form__button button"
+                  onClick={() => setStep((s) => s - 1)}
+                  type="button"
+                >
+                  Назад
+                </button>
+              )}
               <button className="form__button button" type="submit">
                 Сохранить и продолжить
               </button>
