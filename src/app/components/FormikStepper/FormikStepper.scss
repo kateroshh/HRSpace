@@ -1,12 +1,6 @@
 @import "@/scss/common/";
 
 @include themify($themes) {
-  .form {
-    &__input {
-      @include inputs-color;
-    }
-  }
-
   .button {
     background-color: themed('accent');
     color: themed('text-light');
@@ -45,23 +39,6 @@
 .form {
   width: 100%;
 
-  &__element {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 32px;
-  }
-
-  &__lable {
-    font-weight: map-get($font-weights, 'bold');
-    margin-bottom: 10px;
-  }
-
-  &__input {
-    width: 90%;
-    border-radius: 8px;
-    padding: 11px 16px;
-  }
-
   &__btn-group {
     width: 90%;
     display: flex;
@@ -98,10 +75,6 @@
   }
 
   .form {
-    &__input {
-      width: 100%;
-    }
-
     &__btn-group {
       width: 100%;
       justify-content: center;
@@ -119,12 +92,6 @@
   .form-wrapper {
     &__title {
       margin: 16px 0 30px 0;
-    }
-
-    .form {
-      &__input::placeholder {
-        font-size: map-get($font-sizes, 'd-tiny');
-      }
     }
   }
 }

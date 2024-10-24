@@ -6,13 +6,13 @@ function isDefined(storedValue) {
 
 export function useLocalStorageState(key, initialValue) {
   const [state, setState] = useState(() => {
-    const storedValue = localStorage.getItem(key);
+    const storedValue = window.localStorage.getItem(key);
 
     return isDefined(storedValue) ? JSON.parse(storedValue) : initialValue;
   });
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(state));
+    window.localStorage.setItem(key, JSON.stringify(state));
   }, [key, state]);
 
   return [state, setState];

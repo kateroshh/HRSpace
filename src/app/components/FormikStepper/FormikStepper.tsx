@@ -5,7 +5,7 @@ import "./FormikStepper.scss";
 import { Form, Formik, FormikConfig, FormikValues } from "formik";
 
 import FormProgress from "@/components/FormProgress/FormProgress";
-import { useLocalStorageState as useStorage } from "@/utils/hooks/useLocalStorageState";
+// import { useLocalStorageState as useStorage } from "@/utils/hooks/useLocalStorageState";
 
 export interface FormikStepProps
   extends Pick<FormikConfig<FormikValues>, "children" | "validationSchema"> {
@@ -13,7 +13,7 @@ export interface FormikStepProps
 }
 
 const FormikStepper = ({ children, ...props }: FormikConfig<FormikValues>) => {
-  const [steps, setSteps] = useStorage("steps", {});
+  const [steps, setSteps] = useState({});
 
   const childrenArray = children as React.ReactElement<FormikStepProps>[];
 
@@ -44,7 +44,7 @@ const FormikStepper = ({ children, ...props }: FormikConfig<FormikValues>) => {
           <h1 className="form-wrapper__title title">
             {currentChild.props.label}
           </h1>
-          <Form className="form" autoComplete="off">
+          <Form className="form">
             {currentChild}
 
             <div className="form__btn-group">

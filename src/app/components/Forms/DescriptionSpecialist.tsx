@@ -1,23 +1,26 @@
 "use client";
 
-import { Field } from "formik";
-
 import { FormikStepProps } from "@/components/FormikStepper/FormikStepper";
+import Input from "@/components/FormElements/Input";
+import InputWithSearch from "@/components/FormElements/InputWithSearch";
 
 const DescriptionSpecialist = ({ validationSchema }: FormikStepProps) => {
   return (
     <>
-      <div className="form__element">
-        <label className="form__lable" htmlFor="vacancies">
-          Название вакансии
-        </label>
-        <Field
-          className="form__input"
-          id="vacancies"
-          name="vacancies"
-          placeholder="Например, контент–менеджер"
-        />
-      </div>
+      <Input
+        label="Название вакансии"
+        name="nameVacancy"
+        type="text"
+        placeholder="Например, контент–менеджер"
+      />
+
+      <InputWithSearch
+        label="Должность"
+        name="vacancy"
+        type="text"
+        placeholder="Начните вводить и выберите должность из списка"
+        isMulty={true}
+      />
 
       {/* <div className="form__element">
         <label className="form__lable" htmlFor="vacancies">

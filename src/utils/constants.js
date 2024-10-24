@@ -44,13 +44,20 @@ export const STEPS = [
 
 export const CONFIG_FORMS = {
   initialValues: {
-    vacancies: "",
+    nameVacancy: "",
+    vacancy: "",
+    vacancy2: "",
     other: "",
   },
   descriptionSpecialist: {
     label: "Какого специалиста ищете?",
     validationSchema: Yup.object({
-      vacancies: Yup.string().required(),
+      nameVacancy: Yup.string()
+        .min(2, "Название вакансии должно быть больше 2 символов")
+        .max(50, "Название вакансии должно быть менее 50 символов")
+        .required("Укажите название вакансии"),
+      vacancy: Yup.string().required("Укажите название должности"),
+      vacancy2: Yup.string().required("Укажите название должности"),
     }),
   },
   workConditions: {

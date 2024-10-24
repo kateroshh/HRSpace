@@ -27,6 +27,7 @@ $themes: (
     id: #6e7070,
     accent: #71a2ff,
     accent-hover: #4b86f6,
+    tips: #ebf0f8,
     step: #becee3,
     new: #d92121,
   ),
@@ -40,6 +41,7 @@ $themes: (
     id: #6e7070,
     accent: #71a2ff,
     accent-hover: #4b86f6,
+    tips: #ebf0f8,
     step: #becee3,
     new: #d92121,
   ),
@@ -65,4 +67,6 @@ $font-weights: (
 
 $line-height: (
     main: 150%,
-)
+);
+
+$input-width: 90%;

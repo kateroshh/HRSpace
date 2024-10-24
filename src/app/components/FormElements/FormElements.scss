@@ -1,0 +1,105 @@
+@import "@/scss/common/";
+
+@include themify($themes) {
+    .input {
+        @include inputs-color;
+    }
+
+    .option:hover {
+        @include hover-link('color');
+    }
+
+    .tips {
+        &__item {
+            background-color: themed('tips');
+
+            &:hover {
+                @include hover-link('color');
+            }
+
+            &:hover .tips__img {
+                stroke: themed('accent-hover');
+            }
+        }
+
+        &__img {
+            stroke: themed('text');
+        }
+    }
+}
+
+.form-elements {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+}
+
+.label {
+    font-weight: map-get($font-weights, 'bold');
+    margin-bottom: 10px;
+}
+
+.input {
+    width: $input-width;
+    border-radius: 8px;
+    padding: 11px 16px;    
+}
+
+.options {
+    width: $input-width;
+    max-height: 168px;
+    height: 100%;
+    border: 1px solid #d4d7d9;
+    border-radius: 8px;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.option {
+    padding: 7px 10px 9px 10px;
+    cursor: pointer;
+}
+
+.input-with-search > .form-elements{
+    margin-bottom: 0;
+}
+
+.input-with-search > .tips:last-of-type{
+    margin-top: 8px;
+}
+
+.tips {
+    display: flex;
+    width: $input-width;
+    flex-wrap: wrap;
+
+    &__item {
+        border-radius: 8px;
+        padding: 8px 12px;
+        margin-bottom: 8px;
+        cursor: pointer;
+    }
+
+    &__item:not(:last-child) {
+        margin-right: 8px;
+    }
+
+    &__img {
+        margin-left: 10px;
+        cursor: pointer;
+    }
+}
+
+// Media breackpoints
+
+@include size-930 {
+    .input {
+        width: 100%;
+    }
+}
+
+@include size-600 {
+    .input::placeholder {
+        font-size: map-get($font-sizes, 'd-tiny');
+    }
+}
