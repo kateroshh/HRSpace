@@ -1,0 +1,103 @@
+@import "@/scss/common/";
+
+@include themify($themes) {
+  .footer {
+    background-color: themed('text');
+    color: themed('bg');
+    
+    &__link {
+      color: themed('bg');
+    }
+
+    &__copyright {
+      color: themed('id');
+    }
+  }
+}
+
+.footer {
+    margin-top: -130px;
+    height: 130px;
+    border-radius: 40px 40px 0 0;
+    @extend %display-flex;
+    justify-content: space-around;
+  
+    &__info {
+      display: inline;
+    }
+  
+    &__link {
+      margin-left: 5px;
+    }
+  
+    &__text {
+      font-weight: map-get($font-weights, 'regular');
+    }
+  
+    &__title {
+      font-weight: map-get($font-weights, 'bold');
+      font-size: map-get($font-sizes, 'main');
+    }
+
+    &__question {
+      margin-bottom: 10px;
+    }
+  
+    &__contacts {
+      text-align: right;
+    }
+  
+    .contacts {    
+      .contact {
+        font-weight: map-get($font-weights, 'regular');
+        font-size: map-get($font-sizes, 'd-small');
+  
+        &__num {
+          font-weight: map-get($font-weights, 'bold');
+        }
+      }
+    }
+  }
+
+  @include size-930 {
+    .footer {
+      &__text {
+        width: 60%;
+      }
+    }
+  }
+
+  @include size-600 {
+    .footer {
+      flex-direction: column;
+      padding: 16px;
+      font-size: map-get($font-sizes, 'd-small');
+  
+      &__text {
+        width: 95%;
+      }
+  
+      &__contacts {
+        width: 95%;
+      }
+  
+      &__title, &__question {
+        display: none;
+      }
+  
+      .contacts {    
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+  
+        .contact {
+          display: flex;
+          flex-direction: column;
+          width: 33%;
+          font-size: map-get($font-sizes, 'd-tiny');
+        }
+      }
+    }
+  
+  }

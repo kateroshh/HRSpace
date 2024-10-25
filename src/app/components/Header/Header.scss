@@ -1,0 +1,117 @@
+@import "@/scss/common/";
+
+@include themify($themes) {
+  @include size-930 {
+    .burger {
+        &::after, &::before {
+            background-color: themed('text');
+        }
+
+        &_active {
+          &::after, &::before {
+            background-color: themed('bg');
+          }
+        }
+    }
+
+    .mobile-menu{
+      &_active {
+        background-color: rgba(themed('text'), 0.6);
+      }
+
+      &__bg {
+        background-color: themed('text');
+      }
+    }
+
+  }
+}
+
+.header {
+    @extend %display-flex;
+    padding-top: 20px;
+  
+    &__left {
+      @extend %display-flex;
+    }
+}
+
+.burger {
+  display: none;
+}
+
+.mobile-menu {
+  // display: none;
+  opacity: 0;
+  transition: opacity .30s ease-out;
+
+  &_active {
+    display: flex;
+    opacity: 1;
+    position: fixed;
+    top: 0; bottom: 0; right: 0; left: 0;
+    overflow-y: hidden;
+    z-index: 10;
+    justify-content: end;
+  }
+
+  &__bg {
+    z-index: 50;
+    width: 50%;
+    height: 100%;
+  }
+}
+
+@include size-930 {
+  .burger {
+    display: flex;
+    position: absolute;
+    right: 15px;
+    z-index: 50;
+    align-items: center;
+    justify-content: flex-end;
+    max-width: 30px;
+    width: 100%;
+    height: 18px;
+    cursor: pointer;
+  
+    &::after, &::before {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        transition: all 0.3s ease 0s;
+    }
+  
+    &::after {
+        bottom: 0;
+    }
+  
+    &::before {
+        top: 0;
+    }
+  
+    &_active::after {
+        bottom: 50%;
+        transform: rotate(45deg) translate(0, 50%);
+    }
+  
+    &_active::before {
+        top: 50%;
+        transform: rotate(-45deg) translate(0, -50%);
+    }
+  }
+}
+
+@include size-660 {
+  .burger {
+    max-width: 24px;
+    height: 14px;
+  }
+
+  .mobile-menu {
+    &__bg {
+      width: 70%;
+    }
+  }
+}

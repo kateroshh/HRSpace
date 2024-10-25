@@ -1,0 +1,105 @@
+@import "@/scss/common/";
+
+@include themify($themes) {
+    .user-info {
+        &__bell, &__chat {
+            @include hover-link('stroke');
+        }
+
+        &__id {
+            color: themed('id');
+        }
+
+        &__link {
+            color: themed('text');
+        }
+    }
+
+    .steps {
+        .user-info {
+            &_new {
+                &::after {
+                background-color: themed('new');
+                }
+            }
+        }
+    }
+
+    @include size-930 {
+        .user-info {
+            &__bell, &__chat {
+                stroke: themed('bg');
+            }
+
+            &__link {
+                color: themed('bg');
+            }
+        }
+    }
+}
+  
+.user-info {
+    @extend %display-flex;
+    column-gap: 14px;
+
+    &__link {
+        position: relative;
+
+        &_new {
+        &::after {
+            content: "";
+            border-radius: 50%;
+            background-color: red;
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            bottom: -4px;
+            right: 7px;
+        }
+        }
+    }
+
+    &__bell, &__chat {
+        @extend %icon-size;
+    }
+
+    &__portfolio {
+        @extend %display-flex;
+        column-gap: 8px;
+    }
+
+    &__about {
+        margin: 2px 4px 0 0;
+    }
+
+    &__id {
+        font-size: map-get($font-sizes, 'd-small');
+    }
+}
+
+@include size-930 {
+    .user-info {
+        display: none;
+
+        &_mobile {
+            display: flex;
+            z-index: 50;
+            column-gap: 0;
+            margin: 0;
+            column-gap: 20px;
+            position: absolute;
+            bottom: 7%;
+            right: 7%;
+        }
+    }
+}
+
+@include size-660 {
+    .user-info {
+        &_mobile {
+            flex-direction: column;
+            row-gap: 10px;
+            right: 10%;
+        }
+    }
+}

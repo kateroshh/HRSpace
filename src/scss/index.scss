@@ -1,6 +1,62 @@
-@import "./common";
+@import "@/scss/common/";
+
+@include themify($themes) {
+  .page {
+    background-color: themed('bg');
+    color: themed('text');
+  }
+}
 
 body {
-    background-color: map-get($colors, 'bg-color');
-    height: 100%;
+  height: 100%;
+}
+
+.hide-scroll {
+  overflow: hidden;
+}
+
+.page {
+  font-family: Arial, sans-serif;
+  font-weight: map-get($font-weights, 'regular');
+  min-height: 100vh;
+  min-width: map-get($content-with, '600px');
+  font-size: map-get($font-sizes, 'main');
+  line-height: map-get($line-height, 'main'); 
+}
+
+.container {
+  @extend %container;
+}
+
+.main {
+  @extend %container;
+  margin-bottom: 67px;
+  padding-bottom: 130px;
+  min-height: 100vh;
+}
+
+.title {
+  font-weight: map-get($font-weights, 'bold');
+  font-size: map-get($font-sizes, 'd-title');
+}
+
+.button {
+  border-radius: 8px;
+  padding: 11px 32px;
+  cursor: pointer;
+  font-weight: map-get($font-weights, 'bold');
+}
+
+// Media breackpoints
+
+@include size-1024 {
+  .main {
+    margin-bottom: 0;
+  }
+}
+
+@include size-930 {
+  .main {
+    margin-bottom: 60px;
+  }
 }
