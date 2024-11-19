@@ -28,42 +28,49 @@ const FormikStepper = ({ children, ...props }: FormikConfig<FormikValues>) => {
     <Formik
       {...props}
       validationSchema={currentChild.props.validationSchema}
-      onSubmit={(values, helpers) => {
+      onSubmit={async (values, helpers) => {
         if (isLastStep()) {
-          props.onSubmit(values, helpers);
+          await props.onSubmit(values, helpers);
         } else {
           setSteps(values);
           setStep((s) => s + 1);
+          helpers.setTouched({});
         }
       }}
     >
-      <div className="form-box">
-        <FormProgress currentStep={step} />
+      {({ isSubmitting }) => (
+        <div className="form-box">
+          <FormProgress currentStep={step} />
 
-        <div className="form-wrapper">
-          <h1 className="form-wrapper__title title">
-            {currentChild.props.label}
-          </h1>
-          <Form className="form">
-            {currentChild}
+          <div className="form-wrapper">
+            <h1 className="form-wrapper__title title">
+              {currentChild.props.label}
+            </h1>
+            <Form className="form" autoComplete="off">
+              {currentChild}
 
-            <div className="form__btn-group">
-              {isLastStep() && (
-                <button
-                  className="form__button button"
-                  onClick={() => setStep((s) => s - 1)}
-                  type="button"
-                >
-                  Назад
+              <div className="form__btn-group">
+                {isLastStep() && (
+                  <button
+                    className="form__button button"
+                    onClick={() => setStep((s) => s - 1)}
+                    type="button"
+                  >
+                    Назад
+                  </button>
+                )}
+                <button className="form__button button" type="submit">
+                  {isSubmitting
+                    ? "Отправлено!"
+                    : isLastStep()
+                      ? "Отправить"
+                      : "Сохранить и продолжить"}
                 </button>
-              )}
-              <button className="form__button button" type="submit">
-                Сохранить и продолжить
-              </button>
-            </div>
-          </Form>
+              </div>
+            </Form>
+          </div>
         </div>
-      </div>
+      )}
     </Formik>
   );
 };

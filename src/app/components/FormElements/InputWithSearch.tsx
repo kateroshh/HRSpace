@@ -1,21 +1,24 @@
 "use client";
-import { ChangeEvent, useState, useEffect } from "react";
+import { ChangeEvent, useState } from "react";
 import "./FormElements.scss";
 import { TInputWithSearch, TOption } from "@/types/types";
 
-import SVG from "react-inlinesvg";
+import { useFormikContext, useField } from "formik";
 
 import Input from "@/components/FormElements/Input";
 import InputOptions from "@/components/FormElements/InputOptions";
+import InputTips from "@/components/FormElements/InputTips";
 
 const listOptions = [
   {
     id: 1,
     name: "Менеджер",
+    tips: true,
   },
   {
     id: 2,
     name: "Дизайнер",
+    tips: true,
   },
   {
     id: 3,
@@ -27,18 +30,22 @@ const listOptions = [
   },
 ];
 
-const InputWithSearch = ({ isMulty, ...rest }: TInputWithSearch) => {
-  const [filterOptions, setFilterOptions] = useState(listOptions);
-  const [inputValue, setInputValue] = useState("");
-  const [isOpenOptions, setIsOpenOptions] = useState(false);
-  const [selectOptions, setSelectOptions] = useState<TOption[]>([]);
+const InputWithSearch = ({ isMulty, isTips, ...rest }: TInputWithSearch) => {
+  const formik = useFormikContext();
+  const [field] = useField(rest);
 
-  useEffect(() => {
-    <InputOptions options={filterOptions} onClick={handleOnClick} />;
-  }, [filterOptions]);
+  // console.log(f);
+  // console.log(field);
+  const [options, setOptions] = useState(listOptions);
+  const [isOpenOptions, setIsOpenOptions] = useState(false);
+  const [selectOptions, setSelectOptions] = useState<TOption[]>(
+    field.value ? [...field.value] : [],
+  );
+  const [isEmptyOptions, setIsEmptyOptions] = useState(
+    listOptions.length === 0 ? true : false,
+  );
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
     if (e.target.value.trim() === "") {
       setIsOpenOptions(false);
     } else {
@@ -49,67 +56,64 @@ const InputWithSearch = ({ isMulty, ...rest }: TInputWithSearch) => {
       option.name.toLowerCase().includes(e.target.value.trim().toLowerCase()),
     );
 
-    if (filterValue.length === 0) {
-      setFilterOptions([{ id: 0, name: "Другое" }]);
+    const listFilter = filterValue?.filter(
+      (option) => !selectOptions.includes(option),
+    );
+
+    setOptions(isMulty ? listFilter : filterValue);
+
+    if (filterValue.length === 0 || listFilter.length === 0) {
+      setIsEmptyOptions(true);
     } else {
-      setFilterOptions(filterValue);
+      setIsEmptyOptions(false);
     }
   };
 
-  const handleOnClick = (item: TOption) => {
+  const handleOnClick = (option: TOption) => {
     if (isMulty) {
-      setSelectOptions([...selectOptions, item]);
-      setInputValue("");
-      // setFilterOptions(filterOptions.filter((o) => o !== item));
-      setFilterOptions([]);
+      setSelectOptions([...selectOptions, option]);
+      formik.setFieldValue(field.name, [...selectOptions, option]);
     } else {
-      setInputValue(item.name);
+      formik.setFieldValue(field.name, [option]);
     }
 
     setIsOpenOptions(false);
   };
 
   const deleteOption = (item: TOption) => {
-    setSelectOptions(selectOptions.filter((o) => o !== item));
+    const deletedOptions = selectOptions.filter((o) => o !== item);
+
+    setSelectOptions(deletedOptions);
+    formik.setFieldValue(field.name, deletedOptions);
+  };
+
+  const getValue = () => {
+    if (!isMulty && field.value.length !== 0) {
+      return field.value[0]?.name;
+    }
   };
 
   return (
     <div className="input-with-search">
-      {isMulty && (
-        <ul className="tips">
-          {selectOptions.map((item) => (
-            <li className="tips__item" key={item.id}>
-              {item.name}
-              <button
-                className="tips__button"
-                type="button"
-                onClick={() => {
-                  deleteOption(item);
-                }}
-              >
-                <SVG className="tips__img" src="/img/trash.svg" />
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-      <Input
-        {...rest}
-        value={inputValue}
-        onChange={(e) => {
-          handleOnChange(e);
-        }}
-      />
-      {isOpenOptions && (
-        <InputOptions options={filterOptions} onClick={handleOnClick} />
-      )}
-      {/* <ul className="tips">
-        {listOptions.map((item, index) => (
-          <li className="tips__item" key={index}>
-            {item}
-          </li>
-        ))}
-      </ul> */}
+      <InputTips
+        isMulty={isMulty}
+        isTips={isTips}
+        selectOptions={selectOptions}
+        onDelete={deleteOption}
+        listOptions={listOptions}
+        onClick={handleOnClick}
+      >
+        <Input
+          {...rest}
+          value={getValue()}
+          onChange={(e) => {
+            handleOnChange(e);
+          }}
+        />
+        {isOpenOptions && !isEmptyOptions && (
+          <InputOptions options={options} onClick={handleOnClick} />
+        )}
+      </InputTips>
     </div>
   );
 };

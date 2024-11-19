@@ -45,8 +45,7 @@ export const STEPS = [
 export const CONFIG_FORMS = {
   initialValues: {
     nameVacancy: "",
-    vacancy: "",
-    vacancy2: "",
+    vacancy: [],
     other: "",
   },
   descriptionSpecialist: {
@@ -56,8 +55,7 @@ export const CONFIG_FORMS = {
         .min(2, "Название вакансии должно быть больше 2 символов")
         .max(50, "Название вакансии должно быть менее 50 символов")
         .required("Укажите название вакансии"),
-      vacancy: Yup.string().required("Укажите название должности"),
-      vacancy2: Yup.string().required("Укажите название должности"),
+      vacancy: Yup.array().ensure().required("Укажите название должности"),
     }),
   },
   workConditions: {

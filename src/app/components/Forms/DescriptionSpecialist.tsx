@@ -1,5 +1,7 @@
 "use client";
 
+import { Field } from "formik";
+
 import { FormikStepProps } from "@/components/FormikStepper/FormikStepper";
 import Input from "@/components/FormElements/Input";
 import InputWithSearch from "@/components/FormElements/InputWithSearch";
@@ -19,8 +21,19 @@ const DescriptionSpecialist = ({ validationSchema }: FormikStepProps) => {
         name="vacancy"
         type="text"
         placeholder="Начните вводить и выберите должность из списка"
-        isMulty={true}
+        isMulty={false}
+        isTips={false}
       />
+
+      {/* <Field
+        component={InputWithSearch}
+        label="Должность"
+        name="vacancy"
+        type="text"
+        placeholder="Начните вводить и выберите должность из списка"
+        isMulty={false}
+        isTips={false}
+      /> */}
 
       {/* <div className="form__element">
         <label className="form__lable" htmlFor="vacancies">

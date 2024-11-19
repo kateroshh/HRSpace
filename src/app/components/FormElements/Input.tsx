@@ -16,16 +16,19 @@ const Input = ({ label, name, onChange, ...rest }: TInput) => {
 
         <Field name={name}>
           {({ field, form }: FieldProps) => (
-            <input
-              className={`input ${form.errors[name] && form.touched[name] ? "input_error" : ""}`}
-              {...field}
-              name={name}
-              onChange={(e) => {
-                field.onChange(e);
-                onChange ? onChange(e) : null;
-              }}
-              {...rest}
-            />
+            <>
+              {console.log(field)}
+              <input
+                className={`input ${form.errors[name] && form.touched[name] ? "input_error" : ""}`}
+                {...field}
+                name={name}
+                onChange={(e) => {
+                  field.onChange(e);
+                  onChange ? onChange(e) : null;
+                }}
+                {...rest}
+              />
+            </>
           )}
         </Field>
         <ErrorMessage name={name} component={TextError} />

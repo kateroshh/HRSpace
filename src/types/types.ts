@@ -8,6 +8,20 @@ export type TFormProgress = {
   currentStep: number;
 };
 
+export type TTextError = {
+  children?: ReactNode | string;
+};
+
+export type TOption = {
+  id: number;
+  name: string;
+  tips?: boolean;
+};
+
+export type TOptions = {
+  options: TOption[];
+};
+
 export type TInput = {
   label?: string;
   name: string;
@@ -17,19 +31,6 @@ export type TInput = {
   value?: string;
 };
 
-export type TTextError = {
-  children?: ReactNode | string;
-};
-
-export type TOption = {
-  id: number;
-  name: string;
-};
-
-export type TOptions = {
-  options: TOption[];
-};
-
 export type TInputOptions = {
   options: TOptions["options"];
   onClick: (item: TOption) => void;
@@ -37,4 +38,15 @@ export type TInputOptions = {
 
 export type TInputWithSearch = TInput & {
   isMulty: boolean;
+  isTips: boolean;
+};
+
+export type TInputTips = {
+  isMulty: boolean;
+  isTips: boolean;
+  children?: ReactNode | string;
+  selectOptions: TOptions["options"];
+  onDelete: (item: TOption) => void;
+  listOptions: TOptions["options"];
+  onClick: (item: TOption) => void;
 };

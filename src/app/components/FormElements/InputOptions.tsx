@@ -3,7 +3,6 @@ import "./FormElements.scss";
 import { TInputOptions } from "@/types/types";
 
 const InputOptions = ({ options, onClick }: TInputOptions) => {
-  // console.log(options);
   return (
     <ul className="options">
       {options.map((item) => (
